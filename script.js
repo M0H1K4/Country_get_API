@@ -4,7 +4,7 @@ const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
 
 const renderCountry = (data, className = "") => {
-  const html = ` 
+  const html = `
     <article class="country ${className} ">
     <img class="country__img" src="${data.flags.png}" />
     <div class="country__data">
@@ -42,18 +42,15 @@ const getCountryAndNebhour = country => {
     // Get neibhour country (2)
     const neighbors = data.borders;
     console.log('neibhour countries are: ' , neighbors);
-    
 
     if (!neighbors || neighbors.length === 0) {
       console.log("No neighbors found!");
       return;
-    } 
+    }
 
     // find first neighbor;
     const firstNeighbor = neighbors[0];
     console.log("Fetching neigbor:", firstNeighbor);
-    
-
 
     // AJAX call country 2
     const request2 = new XMLHttpRequest();
@@ -64,7 +61,7 @@ const getCountryAndNebhour = country => {
         // console.log(neighbors);
         const [data2] = JSON.parse(request2.responseText);
         console.log("Neighbor data:",  data2);
-        
+
         renderCountry(data2, 'neighbour')
     });
   });
@@ -72,10 +69,18 @@ const getCountryAndNebhour = country => {
 
 getCountryAndNebhour('mongolia');
 
+const request = fetch('https://restcountries.com/v3.1/name/sakartvelo')
+console.log(request);
 
+// const getCountryData = country => {
+//   fetch(`https://restcountries.com/v3.1/name/${country}`)
+//     .then(response => {
+//       console.log(response);
+//       return response.json();
+//     })
+//     .then(data => {
+//       console.log(data);
+//     });
+// };
 
-// const numbers = [10, 20, 30];
-
-// numbers.splice(0, 1);
-
-// console.log(numbers);
+// getCountryData('sakartvelo');
